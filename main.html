@@ -12,24 +12,21 @@
       <th>Price</th>
     </tr>
 
-    <!-- Whatever items you have… Cypress will change prices -->
+    <!-- your price rows; Cypress will overwrite them -->
     <tr class="item">
-      <td>Apple</td>
+      <td>Item 1</td>
       <td class="price">100</td>
     </tr>
     <tr class="item">
-      <td>Banana</td>
+      <td>Item 2</td>
       <td class="price">150</td>
     </tr>
     <tr class="item">
-      <td>Milk</td>
+      <td>Item 3</td>
       <td class="price">160</td>
     </tr>
 
   </table>
-
-  <br>
-  <button onclick="calculateTotal()">Calculate Total</button>
 
   <div id="ans"></div>
 
@@ -38,14 +35,17 @@
       const prices = document.querySelectorAll(".price");
       let total = 0;
 
-      prices.forEach(el => {
-        // clean string: keep only numbers and decimals
-        let value = el.textContent.replace(/[^0-9.]/g, "");
-        total += Number(value);
+      prices.forEach(p => {
+        let val = p.textContent.replace(/[^0-9.]/g, ""); // clean
+        total += Number(val);
       });
 
+      // Put total directly in #ans
       document.getElementById("ans").textContent = total;
     }
+
+    // auto-run the function so Cypress immediately gets the total
+    window.onload = calculateTotal;
   </script>
 
 </body>
