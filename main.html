@@ -1,42 +1,49 @@
-<table id="groceryTable" border="1">
-  <tr>
-    <th>Item</th>
-    <th>Price</th>
-  </tr>
-  <tr class="item">
-    <td>Milk</td>
-    <td class="price">20</td>
-  </tr>
-  <tr class="item">
-    <td>Bread</td>
-    <td class="price">30</td>
-  </tr>
-  <tr class="item">
-    <td>Eggs</td>
-    <td class="price">50</td>
-  </tr>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grofers Checkout</title>
+</head>
+<body>
 
-<br>
-<button onclick="calculateTotal()">Calculate Total</button>
+  <table id="groceryTable" border="1">
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+    <tr class="item">
+      <td>Milk</td>
+      <td class="price">20</td>
+    </tr>
+    <tr class="item">
+      <td>Bread</td>
+      <td class="price">30</td>
+    </tr>
+    <tr class="item">
+      <td>Eggs</td>
+      <td class="price">50</td>
+    </tr>
+  </table>
 
-<script>
-  function calculateTotal() {
-    const priceElements = document.querySelectorAll(".price");
-    let total = 0;
+  <br>
+  <button onclick="calculateTotal()">Calculate Total</button>
 
-    priceElements.forEach(el => {
-      total += Number(el.textContent);
-    });
+  <!-- Cypress expects this -->
+  <div id="ans"></div>
 
-    const table = document.getElementById("groceryTable");
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
+  <script>
+    function calculateTotal() {
+      const priceElements = document.querySelectorAll(".price");
+      let total = 0;
 
-    cell.colSpan = 2;
-    cell.textContent = "Total Price: " + total;
+      priceElements.forEach(el => {
+        total += Number(el.textContent);
+      });
 
-    row.appendChild(cell);
-    table.appendChild(row);
-  }
-</script>
+      // output for Cypress
+      document.querySelector("#ans").textContent = total;
+    }
+  </script>
+
+</body>
+</html>
